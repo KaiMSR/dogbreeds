@@ -1,4 +1,4 @@
-# Welcome to Azure Machine Learning service in a lab environmen
+# Welcome to Azure Machine Learning service in a lab environment
 
 This document provides the steps to get started using Azure Machine Learning services.
 
@@ -69,7 +69,7 @@ az login
 
 ## log in using the browser
 
-az account set –-subscription $SUBCRIPTION_ID
+az account set â€“-subscription $SUBCRIPTION_ID
 az account show
 
 KEY=az keyvault secret show --name $AZURE_STORAGE_ACCOUNT \
@@ -101,7 +101,7 @@ az login
 
 ## log in using the browser
 
-az account set –-subscription $env:SUBCRIPTION_ID
+az account set â€“-subscription $env:SUBCRIPTION_ID
 az account show
 
 $keys_in_json = az keyvault secret show `
