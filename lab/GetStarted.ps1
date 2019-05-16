@@ -5,10 +5,10 @@ $DATA_KEYVAULT_NAME==Read-Host "Enter your key vault with the key for the experi
 
 # Set workspace information
 $env:SUBSCRIPTION_ID=Read-Host "Enter your resource group, such as 'abf57110-9581-47e3-a15e-03754e3661ec'"
-$env:RESOURCEGROUP_NAME=Read-Host "Enter your resource group, such as 'msr-demo8-westeurope-test-rg'"
+$env:RESOURCEGROUP_NAME=Read-Host "Enter your resource group, such as 'msr-demo8-westeurope-dev-rg'"
 $env:WORKSPACE_NAME=Read-Host "Enter your workspace name, such as 'msrdemo8westeuropedevws'"
-$env:WORKSPACE_STORAGE_ACCOUNT=Read-Host "Enter your workspace storage account name, such as 'msrdemo8wetestst'"
-$WORKSPACE_KEYVAULT=Read-Host "Enter your workspace key vault name, such as 'msrdemo8wetestkv'"
+$env:WORKSPACE_STORAGE_ACCOUNT=Read-Host "Enter your workspace storage account name, such as 'msrdemo8wedevst'"
+$WORKSPACE_KEYVAULT=Read-Host "Enter your workspace key vault name, such as 'msrdemo8wedevkv'"
 
 $env:AML_COMPUTETARGET=Read-Host "Enter your compute target, such as 'p100-4ded-we'"
 
