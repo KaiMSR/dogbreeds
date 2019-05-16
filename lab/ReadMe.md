@@ -65,6 +65,15 @@ export RESOURCEGROUP_NAME=<resourcegroup_name>
 export SUBSCRIPTION_ID=<subscription_id>
 KEYVAULT_NAME=<demo_data_keyvault_name>
 
+# set up the azure machine learning services environment
+conda create -n azureml -y Python=3.6 ipywidgets nb_conda
+conda activate azureml
+pip install --upgrade azureml-sdk[notebooks,contrib] scikit-image tensorflow tensorboardX --user 
+jupyter nbextension install --py --user azureml.widgets
+jupyter nbextension enable azureml.widgets --user --py
+
+# start up azure
+
 az login
 
 ## log in using the browser
