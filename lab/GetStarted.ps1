@@ -12,6 +12,13 @@ $WORKSPACE_KEYVAULT=Read-Host "Enter your workspace key vault name, such as 'msr
 
 $env:AML_COMPUTETARGET=Read-Host "Enter your compute target, such as 'p100-4ded-we'"
 
+# set up the azure machine learning services environment
+conda create -n azureml -y Python=3.6 ipywidgets nb_conda
+conda activate azureml
+pip install --upgrade azureml-sdk[notebooks,contrib] scikit-image tensorflow tensorboardX --user 
+jupyter nbextension install --py --user azureml.widgets
+jupyter nbextension enable azureml.widgets --user --py
+
 ## log in to Azure
 az login
 
