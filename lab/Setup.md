@@ -68,9 +68,10 @@ Set up the scripting environment and install [Azure Machine Learning services fo
 ```bash
 conda create -n azureml -y Python=3.6 ipywidgets nb_conda 
 conda activate azureml 
-pip install --upgrade azureml-sdk[notebooks,contrib] \    scikit-image tensorflow tensorboardX --user 
+pip install --upgrade azureml-sdk[notebooks,contrib] \
+  scikit-image tensorflow tensorboardX --user 
 jupyter nbextension install --py --user azureml.widgets 
-jupyter nbextension enable azureml.widgets --user �py
+jupyter nbextension enable azureml.widgets --user py
 ```
 
 The installation includes the widgets you can use to monitor your job runs in Jupyter Notebook.
