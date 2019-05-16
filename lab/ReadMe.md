@@ -32,7 +32,7 @@ Here are the prerequisites for users to get started.
   - AzCopy
   - Azure ML CLI
 
-See [Setup](setup.md) for details.
+See [Setup](Setup.md) for details.
 
 Your admin will have already:
 
