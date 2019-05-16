@@ -1,7 +1,7 @@
 # Set the storage accouont and key vault name for your data
-$env:DATA_STORAGE_ACCOUNT="msrsamplewedatast"
-$env:DATA_STORAGE_CONTAINER="dogbreeds" 
-$DATA_KEYVAULT_NAME="msrsamplewedatakv"
+$env:DATA_STORAGE_ACCOUNT=Read-Host "Enter your storage account for the experiment data, such as 'msrsamplewedatast'"
+$env:DATA_STORAGE_CONTAINER=Read-Host "Enter your storage container for the experiment data, 'breeds'" 
+$DATA_KEYVAULT_NAME==Read-Host "Enter your key vault with the key for the experiment data, 'msrsamplewedatakv'"
 
 # Set workspace information
 $env:SUBSCRIPTION_ID=Read-Host "Enter your resource group, such as 'abf57110-9581-47e3-a15e-03754e3661ec'"
