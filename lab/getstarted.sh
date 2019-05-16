@@ -1,7 +1,9 @@
 # Set the storage accouont and key vault name for your data
-export DATA_STORAGE_ACCOUNT="msrsamplewedatast"
+export DATA_STORAGE_ACCOUNT
+read -p "Enter the name of the data storage account, such as 'msrsamplewedatast'" DATA_STORAGE_ACCOUNT
 export DATA_STORAGE_CONTAINER="dogbreeds" 
-DATA_KEYVAULT_NAME="msrsamplewedatakv"
+read -p "Enter the name of the data storage container for your data, such as 'dogbreeds'" DATA_STORAGE_CONTAINER
+read -p "Enter the name of the key vault that holds the key for your data, such as 'msrsamplewedatakv'" DATA_STORAGE_CONTAINER
 
 # Set workspace information
 export SUBSCRIPTION_ID
