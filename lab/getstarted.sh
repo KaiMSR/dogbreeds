@@ -20,7 +20,7 @@ export AML_COMPUTE_TARGET
 read "Enter your compute target, such as 'p100-4gpus-ded-westeurope'" AML_COMPUTE_TARGET
 
 # set up the azure machine learning services environment and update the packages
-conda create -n azureml -y Python=3.6 ipywidgets nb_conda
+# conda create -n azureml -y Python=3.6 ipywidgets nb_conda
 conda activate azureml
 pip install --upgrade azureml-sdk[notebooks,contrib] scikit-image tensorflow tensorboardX --user 
 jupyter nbextension install --py --user azureml.widgets
