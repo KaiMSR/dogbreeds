@@ -4,10 +4,10 @@ The administrator has set up the Dogbreeds data in a common repository that you 
 
 Your project will use a different set of data, which you copy into your Azure Storage account.
 
-For small data sizes, you can 
+For small data sizes, you can: 
 
 - [Copy data using the portal](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-portal)
-- [Copy data using the Azure ML Python SDK into the Datastore](https://docs.microsoft.com/en-us/python/api/azureml-core/azureml.data.azure_storage_datastore.abstractazurestoragedatastore?view=azure-ml-py#upload-src-dir--target-path-none--overwrite-false--show-progress-true-)
+- [Copy data using the Azure ML Python SDK into Datastore](https://docs.microsoft.com/en-us/python/api/azureml-core/azureml.data.azure_storage_datastore.abstractazurestoragedatastore?view=azure-ml-py#upload-src-dir--target-path-none--overwrite-false--show-progress-true-)
 
 For large amounts of data, you will want to use [AzCopy](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10). 
 The code in this article provides a way to copy data with AzCopy using keys that are stored key vault. 
@@ -24,7 +24,11 @@ You will need the following prerequisites:
 
 The following code assumes that the storage key has been stored into a Key Vault resource.
 
-You should have already set environment variables in PowerShell.
+## Set environment variables
+
+You should have already set environment variables 
+
+### Using PowerShell
 
 ```powershell
 $KEYVAULT_NAME = <the key vault name with the key to your data>
@@ -32,7 +36,7 @@ $env:AZURE_STORAGE_ACCOUNT = <the data storageaccount>
 $env:AZURE_STORAGE_CONTAINER = <storage container/folder for your data>
 ```
 
-or in Bash.
+### Using Bash
 
 ```bash
 KEYVAULT_NAME=<the key vault name with the key to your data>
@@ -62,15 +66,15 @@ cd 'C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy'
 Copy your data from `/mnt/myfiles/` using Bash:
 
 ```bash
-export AZURE_STORAGE_KEY=az keyvault secret show --vault-name $KEYVAULT_NAME \    
-    --name $AZURE_STORAGE_ACCOUNT | \
-python -c 'import sys, json; \ 
+export AZURE_STORAGE_KEY=az keyvault secret show --vault-name $KEYVAULT_NAME \    
+    --name $AZURE_STORAGE_ACCOUNT | \
+python -c 'import sys, json; \
 sys.stdout.write(json.load(sys.stdin)[\" value\"])')
 
-azcopy \ 
-  --source /mnt/myfiles/ \ 
-  --destination https://$storageAccountName.blob.core.windows.net/$AZURE_STORAGE_CONTAINER \ 
-  --dest-key $AZURE_STORAGE_KEY \ 
+azcopy \
+  --source /mnt/myfiles/ \ 
+  --destination https://$storageAccountName.blob.core.windows.net/$AZURE_STORAGE_CONTAINER \ 
+  --dest-key $AZURE_STORAGE_KEY \
   --recursive
 ```
 

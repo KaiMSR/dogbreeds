@@ -1,4 +1,4 @@
-# Welcome to Azure Machine Learning service in a lab environmen
+# Welcome to Azure Machine Learning service in a lab environment
 
 This document provides the steps to get started using Azure Machine Learning services.
 
@@ -32,7 +32,7 @@ Here are the prerequisites for users to get started.
   - AzCopy
   - Azure ML CLI
 
-See [Setup](setup.md) for details.
+See [Setup](Setup.md) for details.
 
 Your admin will have already:
 
@@ -65,11 +65,20 @@ export RESOURCEGROUP_NAME=<resourcegroup_name>
 export SUBSCRIPTION_ID=<subscription_id>
 KEYVAULT_NAME=<demo_data_keyvault_name>
 
+# set up the azure machine learning services environment
+conda create -n azureml -y Python=3.6 ipywidgets nb_conda
+conda activate azureml
+pip install --upgrade azureml-sdk[notebooks,contrib] scikit-image tensorflow tensorboardX --user 
+jupyter nbextension install --py --user azureml.widgets
+jupyter nbextension enable azureml.widgets --user --py
+
+# start up azure
+
 az login
 
 ## log in using the browser
 
-az account set –-subscription $SUBCRIPTION_ID
+az account set â€“-subscription $SUBCRIPTION_ID
 az account show
 
 KEY=az keyvault secret show --name $AZURE_STORAGE_ACCOUNT \
@@ -101,7 +110,7 @@ az login
 
 ## log in using the browser
 
-az account set –-subscription $env:SUBCRIPTION_ID
+az account set â€“-subscription $env:SUBCRIPTION_ID
 az account show
 
 $keys_in_json = az keyvault secret show `

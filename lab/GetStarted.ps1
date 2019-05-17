@@ -1,16 +1,23 @@
 # Set the storage accouont and key vault name for your data
-$env:DATA_STORAGE_ACCOUNT="msrsamplewedatast"
-$env:DATA_STORAGE_CONTAINER="dogbreeds" 
-$DATA_KEYVAULT_NAME="msrsamplewedatakv"
+$env:DATA_STORAGE_ACCOUNT=Read-Host "Enter your storage account for the experiment data, such as 'msrsamplewedatast'"
+$env:DATA_STORAGE_CONTAINER=Read-Host "Enter your storage container for the experiment data, 'breeds'" 
+$DATA_KEYVAULT_NAME=Read-Host "Enter your key vault with the key for the experiment data, 'msrsamplewedatakv'"
 
 # Set workspace information
 $env:SUBSCRIPTION_ID=Read-Host "Enter your resource group, such as 'abf57110-9581-47e3-a15e-03754e3661ec'"
-$env:RESOURCEGROUP_NAME=Read-Host "Enter your resource group, such as 'msr-demo8-westeurope-test-rg'"
+$env:RESOURCEGROUP_NAME=Read-Host "Enter your resource group, such as 'msr-demo8-westeurope-dev-rg'"
 $env:WORKSPACE_NAME=Read-Host "Enter your workspace name, such as 'msrdemo8westeuropedevws'"
-$env:WORKSPACE_STORAGE_ACCOUNT=Read-Host "Enter your workspace storage account name, such as 'msrdemo8wetestst'"
-$WORKSPACE_KEYVAULT=Read-Host "Enter your workspace key vault name, such as 'msrdemo8wetestkv'"
+$env:WORKSPACE_STORAGE_ACCOUNT=Read-Host "Enter your workspace storage account name, such as 'msrdemo8wedevst'"
+$WORKSPACE_KEYVAULT=Read-Host "Enter your workspace key vault name, such as 'msrdemo8wedevkv'"
 
 $env:AML_COMPUTETARGET=Read-Host "Enter your compute target, such as 'p100-4ded-we'"
+
+# set up the azure machine learning services environment
+conda create -n azureml -y Python=3.6 ipywidgets nb_conda
+conda activate azureml
+pip install --upgrade azureml-sdk[notebooks,contrib] scikit-image tensorflow tensorboardX --user 
+jupyter nbextension install --py --user azureml.widgets
+jupyter nbextension enable azureml.widgets --user --py
 
 ## log in to Azure
 az login

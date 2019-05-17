@@ -1,7 +1,9 @@
 # Set the storage accouont and key vault name for your data
-export DATA_STORAGE_ACCOUNT="msrsamplewedatast"
+export DATA_STORAGE_ACCOUNT
+read -p "Enter the name of the data storage account, such as 'msrsamplewedatast'" DATA_STORAGE_ACCOUNT
 export DATA_STORAGE_CONTAINER="dogbreeds" 
-DATA_KEYVAULT_NAME="msrsamplewedatakv"
+read -p "Enter the name of the data storage container for your data, such as 'dogbreeds'" DATA_STORAGE_CONTAINER
+read -p "Enter the name of the key vault that holds the key for your data, such as 'msrsamplewedatakv'" DATA_STORAGE_CONTAINER
 
 # Set workspace information
 export SUBSCRIPTION_ID
@@ -16,6 +18,14 @@ read -p "Enter your workspace key vault name, such as 'msrdemo8wetestkv'" WORKSP
 
 export AML_COMPUTE_TARGET
 read "Enter your compute target, such as 'p100-4gpus-ded-westeurope'" AML_COMPUTE_TARGET
+
+# set up the azure machine learning services environment and update the packages
+# conda create -n azureml -y Python=3.6 ipywidgets nb_conda
+conda activate azureml
+pip install --upgrade azureml-sdk[notebooks,contrib] scikit-image tensorflow tensorboardX --user 
+jupyter nbextension install --py --user azureml.widgets
+jupyter nbextension enable azureml.widgets --user --py
+
 
 ## log in to Azure
 az login
