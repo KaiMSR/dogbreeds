@@ -15,15 +15,16 @@ One of the key goals is to restrict teams and users from create compute targets 
 
 ## Inputs
 
-The scipts ask the admin for the following data:
+The workspace creation scripts ask the admin for the following data to set up the workspace:
 
 - Department name
 - Team name
 - Location
 - Team lead alias
+- Security group assigned to the team
 - Subscription ID
 
-The compute target creation needs:
+The compute target creation scripts needs:
 
 - Number of nodes
 - Priority (lowpriority or dedicated)

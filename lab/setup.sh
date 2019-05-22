@@ -1,0 +1,14 @@
+#!/bin/bash
+# This script updates the Azure CLI, the Azure Machine Learning CLI, and the Azure Machine Learning Services Python SDK on Linux
+
+# update the CLI and the Azure Machine Learning CLI
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash 
+az extension remove -n azure-cli-ml
+az extension add -n azure-cli-ml
+
+# set up the azure machine learning services environment
+conda create -n azureml -y Python=3.6 ipywidgets nb_conda
+conda activate azureml
+pip install --upgrade azureml-sdk[notebooks,contrib] scikit-image tensorflow tensorboardX --user 
+jupyter nbextension install --py --user azureml.widgets
+jupyter nbextension enable azureml.widgets --user --py

@@ -6,7 +6,6 @@ Sets compute in an Azure ML workspace
 Provisions a resource group, Azure ML workspace and associated resources.
 Sets tags for the resources. Sets permissions for team lead.
 Asks for subscription ID, dept name, team name, team lead alias. 
-
 #>
 
 ########
@@ -114,4 +113,7 @@ echo subscription_id=$env:SUBSCRIPTION_ID
 
 az ml computetarget list --resource-group $resourcegroup_name --workspace-name $workspace_name
 
+echo computetarget
+
 $env:AML_COMPUTETARGET = $computetarget_name
+
