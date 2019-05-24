@@ -1,3 +1,4 @@
+#!/bin/sh
 read -p  "Enter the subscription ID: " SUBSCRIPTION_ID
 read -p  "Enter the department name: " DEPARTMENT_NAME
 read -p  "Enter the team name: " TEAM_NAME
@@ -6,6 +7,7 @@ read -p  "Enter the location abbreviation (such as wu2 or we): " LOCATION_ABBR
 read -p  "Enter the enviornment, such as res or dev or prod: " DEVENVIRONMENT
 read -p  "Enter the team leader: " TEAM_LEAD
 read -p  "Enter the team security group: " TEAM_SECURITY_GROUP
+read -p "Create Azure Data Lake Store account (y/n): " ADLS
 
 resourcegroup_name=$DEPARTMENT_NAME-$TEAM_NAME-$LOCATION-$DEVENVIRONMENT
 resource_name=$DEPARTMENT_NAME$TEAM_NAME$LOCATION$DEVENVIRONMENT
@@ -60,6 +62,25 @@ az storage account create --name $data_storage_account_name \
 data_storage_account_id=$(az storage account show -n $data_storage_account_name --query id | tr -d '"')
 data_storage_account_key=$(az storage account keys list -g $resourcegroup_name -n $data_storage_account_name --query [0].value | tr -d '"')
 az resource tag --name $data_storage_account_name --resource-group $resourcegroup_name --tags dept=$DEPARTMENT_NAME team=$TEAM_NAME owner=$TEAM_LEAD expires=2019-06-30 location=$LOCATION role=data --resource-type "Microsoft.Storage/storageAccounts"
+
+## if Azure Data Lake Storage is required
+
+ADLS="${ADLS,,}"
+if [ $ADLS == 'y' ]
+then
+	data_lake_store_name=data_storage_account_name=$DEPARTMENT_NAME$TEAM_NAME$LOCATION_ABBR"bigst"
+	data_lake_store_name=${data_lake_store_name:0:23}
+	az storage account create --name data_lake_store_name \
+							--resource-group $resourcegroup_name \
+							--location $LOCATION \
+							--sku Standard_LRS \
+							--kind StorageV2 \
+							--hierarchical-namespace true
+
+	data_lake_storage_account_id=$(az storage account show -n $data_lake_store_name --query id | tr -d '"')
+	data_lake_storage_account_key=$(az storage account keys list -g $resourcegroup_name -n $data_lake_store_name --query [0].value | tr -d '"')
+	az resource tag --name $data_lake_store_name --resource-group $resourcegroup_name --tags dept=$DEPARTMENT_NAME team=$TEAM_NAME owner=$TEAM_LEAD expires=2019-06-30 location=$LOCATION role=bigdata --resource-type "Microsoft.Storage/storageAccounts"
+fi
 
 ## create key vault
 

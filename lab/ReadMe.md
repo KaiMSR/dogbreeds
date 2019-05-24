@@ -52,16 +52,19 @@ Run the following commands to retrieve this repo:
 
 ```bash
 # get the Azure DLI demo
-mkdir ~/msraidli
-cd ~/msraidli
+mkdir ~/notebooks # error is okay on dsvm
+cd ~/notebooks
 git clone https://github.com/msraidli/dogbreeds
-cd ~/msraidli/dogbreeds/lab
+conda init --all
 ```
+
+Close the shell window and open a new command prompt.
 
 Next, update your system with the latest version of the CLI and the Azure Machine Learning services SDK:
 
 ```bash
-updateaml.sh
+cd ~/notebooks/dogbreeds/lab
+bash updateaml.sh
 ```
 
 NOTE: The script creates an Azure Machine Learning services environment in conda. Once you update the default 
