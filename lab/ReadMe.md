@@ -25,14 +25,10 @@ The admin folder shows how your administrator can set up your:
 Here are the prerequisites for users to get started.
 
 - Understand fundamentals of [Azure Machine Learning Services](https://docs.microsoft.com/en-us/azure/machine-learning/service/), including workspaces, experiments, compute
-- Install the following:
+- Have either:
 
-  - Azure CLI
-  - Conda
-  - AzCopy
-  - Azure ML CLI
-
-See [Setup](Setup.md) for details.
+  - Set up on DSVM, see [Setup on DVSM](SetUpAzureMLOnDSVM.md) for details
+  - Set up on a development computer you provide, see [Setup on development system](SetUpOwnDevSystem.md)
 
 Your admin will have already:
 
@@ -50,19 +46,46 @@ Your admin will provide you with:
   - The name of the storage account associated with your workspace
   - The names of the AML Compute clusters you can use
 
+## Open a command prompt on your system
+
+Run the following commands to retrieve this repo:
+
+```bash
+# get the Azure DLI demo
+mkdir ~/msraidli
+cd ~/msraidli
+git clone https://github.com/msraidli/dogbreeds
+cd ~/msraidli/dogbreeds/lab
+```
+
+Next, update your system with the latest version of the CLI and the Azure Machine Learning services SDK:
+
+```bash
+updateaml.sh
+```
+
+NOTE: The script creates an Azure Machine Learning services environment in conda. Once you update the default 
+environment, be sure to start from the azureml environment. This helps prevent overwriting a dependency in 
+your own development environment.
+
 ## Get started in your workspace
 
-Once you get the information, you can get started. Use the following steps to set environment variables, log into Azure.
+Start Jupyter Notebook and then navigate to the [dog-breed-lab-orientation.ipynb](dog-breed-lab-orientation.ipynb)
 
-If you have lost the information, see [How to retrieve your workspace information from the portal](RetrieveWorkspaceInfo.md)
+```bash
+conda activate azureml
+az login
+jupyter notebook
+```
 
-## Next steps
-
-Run the sample notebook.
+## Follow up steps
 
 When you are ready to user your own data, copy your data into your storage account. See [CopyData](CopyData.md).
+
+If forget the information the admin sent you about your workspace, see [Retrieve Workspace Info](RetrieveWorkspaceInfo.md).
 
 ## Special thanks
 
 Daniel and the Azure CAT team.
+And to Juan Lema for deep passion and careful review of this repo.
 

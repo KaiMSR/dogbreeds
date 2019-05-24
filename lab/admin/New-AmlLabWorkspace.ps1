@@ -46,13 +46,11 @@ $resourcegroup_name = $env:DEPARTMENT_NAME + '-' + $env:TEAM_NAME + '-' + $env:L
 $resourcegroup_name = $resourcegroup_name.Substring(0,[System.Math]::Min(90, $resourcegroup_name.Length))
 $resourcegroup_name
 
-$resource_name = $env:DEPARTMENT_NAME + $env:TEAM_NAME + $env:LOCATION_ABBR + $env:DEVENVIRONMENT
-$resource_name = $resource_name.ToLower()
-$resource_name
-
-$workspace_name = $env:DEPARTMENT_NAME + $env:TEAM_NAME + $env:LOCATION + $env:DEVENVIRONMENT + 'ws'
+$workspace_name = $env:DEPARTMENT_NAME + $env:TEAM_NAME + $env:LOCATION + $env:DEVENVIRONMENT
 $workspace_name = $workspace_name.ToLower().Substring(0, [System.Math]::Min(33, $workspace_name.Length))
 $workspace_name
+
+az group create --name $resourcegroup_name --location $env:LOCATION
 
 $storage_account_name = $resource_name.Substring(0,[System.Math]::Min(22, $resource_name.Length))
 $storage_account_name =  $storage_account_name + "st"
@@ -77,10 +75,16 @@ az acr check-name --name $ACR_NAME
 #######
 
 az group create --location $env:LOCATION --resource-group $resourcegroup_name
+#>
+
 az group update -n $resourcegroup_name --set tags.dept=$env:DEPARTMENT_NAME tags.team=$env:TEAM_NAME tags.owner=$env:TEAM_LEAD tags.expires=2019-06-30 tags.location=$env:LOCATION 
 
 az group show -n $resourcegroup_name --query tags -o json | convertfrom-json
 # shows resource group that was created
+
+#########################################
+
+### Get storage account from workspace
 
 #########
 # SET STORAGE ACCOUNT

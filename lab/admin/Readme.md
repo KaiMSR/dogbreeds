@@ -10,8 +10,20 @@ The guidance provides concrete ways to:
 - Show users how to securely access data and keep secrets out of their code.
 - Organize access to resources based on teams and security groups that are already part of your organization.
 - Provide a naming convention so you can find resources for each team.
+- Set up compute for users to debug compute.
+- Provide access to data shared across lab members.
 
 One of the key goals is to restrict teams and users from create compute targets as a cost control measure.
+
+## Set up the Azure CLI on
+
+To get the Azure CLI up and running.
+
+1. Install the WSFL. [Install the Azure CLI](https://docs.microsoft.com/en-us/azure/xplat-cli-install)
+2. Open Bash as an administrator.
+3. Install Azure CLI using `curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash`. You will need the admin password for sudo.
+5. [If necessary] Remove current version of the Azure Machine Learning service CLI: `az extension remove -n azure-cli-ml`
+4. Install Azure Machine Learning service CLI: `az extension add -n azure-cli-ml`
 
 ## Inputs
 
@@ -33,9 +45,9 @@ The compute target creation scripts needs:
 
 ## Code summary
 
-There are several sets of scripts for you to use.
+There are several scripts for you to use.
 
-- Set up the workspaces 
+- Set up the workspaces using the [Azure Resource Manager template to create a workspace for Azure Machine Learning service](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-create-workspace-template#use-azure-cli)
 - Set up the compute
 
 ### Set up workspaces
@@ -46,7 +58,7 @@ The scripts provides:
 - A prescriptive way to set up role based access control for the resource group and included resources.
 - A prescriptive way to tag resources.
 
-In order to make getting started as turn key as possible, the script provides:
+In order to make getting started as turn-key as possible, the script provides:
 
 - Setting up the storage account keys into the user key vault.
 
@@ -102,7 +114,7 @@ The [Data Scientist](https://docs.microsoft.com/en-us/azure/machine-learning/ser
 
 ### Set up compute clusters
 
-The other [addcompute.ps1](addcompute.ps1) script provides for creating the compute target.
+The other [New-AmlLabCompute.ps1](New-AmlLabCompute.ps1) script provides for creating the compute target.
 
 The script asks for the compute target information:
 

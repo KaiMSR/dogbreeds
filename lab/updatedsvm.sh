@@ -7,6 +7,7 @@ az extension remove -n azure-cli-ml
 az extension add -n azure-cli-ml
 
 # set up the azure machine learning services environment
+# (note, the DSVM does not provide an environment)
 conda create -n azureml -y Python=3.6 ipywidgets nb_conda
 conda activate azureml
 pip install --upgrade azureml-sdk[notebooks,contrib] scikit-image tensorflow tensorboardX --user 
