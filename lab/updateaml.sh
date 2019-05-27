@@ -6,15 +6,12 @@ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 az extension remove -n azure-cli-ml
 az extension add -n azure-cli-ml
 
-# initialize conda for environments
-conda update --prefix /data/anaconda/envs/py35 anaconda
-conda init --all
-
 # set up the azure machine learning services environment
 # (note, the DSVM does not provide an environment)
 conda create -n azureml -y Python=3.6 ipywidgets nb_conda
 
 conda activate azureml
-pip install --upgrade azureml-sdk[notebooks,contrib,azure-cli-core] scikit-image tensorflow tensorboardX --user 
+pip install --upgrade azureml-sdk[notebooks,contrib] scikit-image \
+  tensorflow tensorboardX azure-cli-core --user 
 jupyter nbextension install --py --user azureml.widgets
 jupyter nbextension enable azureml.widgets --user --py

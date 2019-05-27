@@ -1,5 +1,6 @@
 #!/bin/sh
 
+echo "ADDING COMPUTE TO A WORKSPACE"
 ## run this if you are starting from scratch; skip if you are continuing from newamllabworkspace.sh
 read -p  "Enter the subscription ID: " SUBSCRIPTION_ID
 read -p  "Enter the department name: " DEPARTMENT_NAME
@@ -19,7 +20,9 @@ read -p "Enter number of GPUs: 1, 2 or 4: " GPUS
 resourcegroup_name=$DEPARTMENT_NAME-$TEAM_NAME-$LOCATION-$DEVENVIRONMENT
 resource_name=$DEPARTMENT_NAME$TEAM_NAME$LOCATION$DEVENVIRONMENT
 
-echo "resourcegroup_name: "$resourcegroup_name
+echo 'resourcegroup_name: '$resourcegroup_name
+echo 'WORKSPACE: '$workspace_name
+
 echo "resourcename: "$resource_name
 echo "workspacename: "$workspace_name
 echo "location: "$LOCATION
@@ -108,18 +111,20 @@ az ml computetarget create amlcompute --name $computetarget_name \
 az ml computetarget show --name $computetarget_name \
     --workspace-name $workspace_name --resource-group $resourcegroup_name -v
 
-$tag=$vm_size_$PRIORITY=$NODES
+tag=$vm_size_$PRIORITY=$NODES
 az resource update --resource-group $resourcegroup_name --name $workspace_name \
     --resource-type "Microsoft.MachineLearningServices/workspaces" --set tags.$tag
 
 az ml workspace show --resource-group $resourcegroup_name --workspace-name $workspace_name
 
-echo "For your users to use in python:"
-echo "resource_group_name = \"$resourcegroup_name\""
-echo "workspace_name = \"$workspace_name\""
-echo "subscription_id = \"$SUBSCRIPTION_ID\""
-
 az ml computetarget list --resource-group $resourcegroup_name --workspace-name $workspace_name
 
-echo "cluster_name = \"$computetarget_name\""
+echo "For your users to use in the orientation lab:"
+echo "export RESOURCE_GROUP=\"$resourcegroup_name\"
+export WORKSPACE=\"$workspace_name\"
+export SUBSCRIPTION_ID=\"$SUBSCRIPTION_ID\"
+export CLUSTER_NAME=\"$computetarget_name\""
+
+
+
 

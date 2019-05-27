@@ -21,7 +21,12 @@ If you are using a [Data Science virtual machine (DSVM)](https://azure.microsoft
 2. Install [X2Go](https://wiki.x2go.org/doku.php/doc:installation:x2goclient) client on your desktop.
 3. Run the X2Go client, and select **New Session**. [Set the configuration dialog box](https://docs.microsoft.com/en-us/azure/machine-learning/data-science-virtual-machine/dsvm-ubuntu-intro#x2go).
 
-# Next steps
+## Note about copy and paste
+
+You can copy the text from GitHub and paste it into the command shell on X2Go using the center button of a three-button mouse.
+From Windows you can use the center wheel as the center button on some mouses.
+
+## Next steps
 
 Continue the set up process on the [ReadMe](ReadMe.md).
 

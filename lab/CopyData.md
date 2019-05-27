@@ -66,10 +66,7 @@ cd 'C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy'
 Copy your data from `/mnt/myfiles/` using Bash:
 
 ```bash
-export AZURE_STORAGE_KEY=az keyvault secret show --vault-name $KEYVAULT_NAME \    
-    --name $AZURE_STORAGE_ACCOUNT | \
-python -c 'import sys, json; \
-sys.stdout.write(json.load(sys.stdin)[\" value\"])')
+export AZURE_STORAGE_KEY=$(az storage account keys list -g $resourcegroup_name -n $data_lake_store_name --query [0].value | tr -d '"')
 
 azcopy \
   --source /mnt/myfiles/ \ 

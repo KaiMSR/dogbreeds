@@ -48,7 +48,7 @@ Your admin will provide you with:
 
 ## Open a command prompt on your system
 
-Run the following commands to retrieve this repo:
+Run the following commands to retrieve this repo.
 
 ```bash
 # get the Azure DLI demo
@@ -71,15 +71,36 @@ NOTE: The script creates an Azure Machine Learning services environment in conda
 environment, be sure to start from the azureml environment. This helps prevent overwriting a dependency in 
 your own development environment.
 
+## Set environment variables
+
+Get the following information from your admin and copy and paste into the shell.
+
+The information to paste into the shell will be something like the following:
+
+```bash
+export SUBSCRIPTION_ID="bede334e-e255-4bcb-89f1-995292e83222"
+export RESOURCE_GROUP="msr-demo8-westeurope-test-rg"
+export WORKSPACE="msrdemo8westeuropedevws"
+export CLUSTER_NAME="k80-1gpu-wu-low"
+
+export DATA_STORAGE_ACCOUNT="msrsamplewedatast"
+export DATA_STORAGE_CONTAINER="breeds"
+```
+
+NOTE - The preceding text is an example. You need to get the actual data from your admin.
+
 ## Get started in your workspace
 
-Start Jupyter Notebook and then navigate to the [dog-breed-lab-orientation.ipynb](dog-breed-lab-orientation.ipynb)
+Start Jupyter Notebook using the following in the shell.
 
 ```bash
 conda activate azureml
 az login
+export DATA_STORAGE_KEY=$(az storage account keys list -g $RESOURCE_GROUP -n DATA_STORAGE_ACCOUNT --query [0].value | tr -d '"')
 jupyter notebook
 ```
+
+Click the folder in the default notebook and navigate to ~/notebooks/dogbreeds/lab/[dog-breed-lab-orientation.ipynb](dog-breed-lab-orientation.ipynb)
 
 ## Follow up steps
 

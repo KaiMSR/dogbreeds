@@ -15,15 +15,20 @@ The guidance provides concrete ways to:
 
 One of the key goals is to restrict teams and users from create compute targets as a cost control measure.
 
-## Set up the Azure CLI on
+## Prerequisites for the admin scripts
 
-To get the Azure CLI up and running.
+To get the Azure CLI up and running in Bash on Windows.
 
 1. Install the WSFL. [Install the Azure CLI](https://docs.microsoft.com/en-us/azure/xplat-cli-install)
 2. Open Bash as an administrator.
 3. Install Azure CLI using `curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash`. You will need the admin password for sudo.
-5. [If necessary] Remove current version of the Azure Machine Learning service CLI: `az extension remove -n azure-cli-ml`
-4. Install Azure Machine Learning service CLI: `az extension add -n azure-cli-ml`
+4. [If necessary] Remove current version of the Azure Machine Learning service CLI: `az extension remove -n azure-cli-ml`
+5. Install Azure Machine Learning service CLI: `az extension add -n azure-cli-ml`
+6. [If you want to add Azure Data Lake Storage account] Install the Azure Storage: `az extension add --name storage-preview`
+7. Install [jq](https://stedolan.github.io/jq/) using `sudo apt-get install jq`
+
+**IMPORTANT**
+The admin scripts run in Bash.
 
 ## Inputs
 
@@ -90,7 +95,7 @@ Sections are marked  `#########`.
 
 ### Set up workspace and related resources
 
-The [addworkspace.ps1](addworkspace.ps1) script provides for creating the resource group, creating resources for:
+The [newamllabworkspace](newamllabworkspace.sh) script provides for creating the resource group, creating resources for:
 
    - Storage account
    - Container registry
@@ -110,11 +115,19 @@ Permissions are assigned at the resource level using Azure Active Directory iden
 | Key Vault | Inherited Owner | Owner | Contributor |
 | App Insights  | Inherited Owner | Owner | Contributor |
 
+NOTE: for the script the Data Scientist role has been named `ML User`
+
 The [Data Scientist](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-assign-roles) role is a currently a custom role. 
+
+To start the script, change directory to the folder and type the following command:
+
+```bash
+bash newamllabworkspace.sh
+```
 
 ### Set up compute clusters
 
-The other [New-AmlLabCompute.ps1](New-AmlLabCompute.ps1) script provides for creating the compute target.
+The  [newamllabcompute.sh](newamllabcompute.sh) script creates the compute target.
 
 The script asks for the compute target information:
 
