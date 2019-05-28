@@ -100,7 +100,8 @@ echo "PRIORITY: "$PRIORITY
 echo "resourcegroup_name: "$resourcegroup_name
 echo "workspace_name: "$workspace_name
 echo "TEAM_LEAD: "$TEAM_LEAD
-read -p "review compute target" -n1 -s
+read -p "review compute target. press the enter key to continue " -n1 -s
+echo
 
 az ml computetarget create amlcompute --name $computetarget_name \
     --max-nodes $NODES --vm-size $vm_size \

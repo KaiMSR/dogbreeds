@@ -1,4 +1,3 @@
-#!/bin/bash
 # This script updates the Azure CLI, the Azure Machine Learning CLI, and the Azure Machine Learning Services Python SDK on Linux
 
 # update the CLI and the Azure Machine Learning CLI

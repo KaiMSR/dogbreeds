@@ -15,7 +15,7 @@ DEPARTMENT_NAME=${DEPARTMENT_NAME:0:4}
 read -p  "Enter the team name (10 chars): " TEAM_NAME
 TEAM_NAME=${TEAM_NAME:0:10}
 read -p  "Enter the location (such as westus2 or westeurope): " LOCATION
-read -p  "Enter the location abbreviation (such as wu2 or we) (2 chars): " LOCATION_ABBR
+read -p  "Enter the location abbreviation (such as w2 or we) (2 chars): " LOCATION_ABBR
 LOCATION_ABBR=${LOCATION_ABBR:0:2}
 read -p  "Enter the enviornment, such as res dev pro (3 chars): " DEVENVIRONMENT
 DEVENVIRONMENT=${DEVENVIRONMENT:0:3}
@@ -284,12 +284,16 @@ fi
 echo "Welcome to Azure Machine Learning Services "$admin
 echo "Here are the variables you need to get started: "
 echo "export SUBSCRIPTION_ID=\""$SUBSCRIPTION_ID"\""
-echo "export RESOURCE GROUP=\""$resourcegroup_name"\""
-echo "export WORKSPACE=\""$workspace_name"\""
+echo "export RESOURCE_GROUP=\""$resourcegroup_name"\""
+echo "export WORKSPACE_NAME=\""$workspace_name"\""
+echo "export WORKSPACE_STORAGE_ACCOUNT=\""$workspace_storage_account_name"\""
 echo 
 echo "Here are so additional resources for you"
-echo "STORAGE ACCOUNT FOR AML OUTPUT: "$workspace_storage_account_name
 echo "YOUR DATA STORAGE ACCOUNT: "$data_storage_account_name
 echo "YOUR KEY VAULT: "$key_vault_name
-
+if [ $ADLS == 'y' ]
+then
+    echo "YOUR DATA LAKE STORAGE ACCOUNT: "$data_lake_store_name
+fi
+echo
 echo "done"
