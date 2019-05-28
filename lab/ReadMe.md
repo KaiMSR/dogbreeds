@@ -57,6 +57,7 @@ Close the shell window and open a new command prompt.
 Next, update your system with the latest version of the CLI and the Azure Machine Learning services SDK:
 
 #### In Bash
+
 ```bash
 cd ~/notebooks/dogbreeds/lab
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash 
@@ -89,6 +90,8 @@ The information to paste into the shell will be something like the following:
 
 #### In Bash
 
+Replace this with the environment that your admin provides for Linux.
+
 ```bash
 export SUBSCRIPTION_ID="bede334e-e255-4bcb-89f1-995292e83222"
 export RESOURCE_GROUP="msr-demo8-westeurope-dev"
@@ -101,6 +104,8 @@ export DATA_STORAGE_CONTAINER="breeds"
 ```
 
 #### In PowerShell
+
+Replace this with the environment your admin providees for Windows.
 
 ```powershell
 $env:SUBSCRIPTION_ID="710e04b9-9155-4f01-aa8e-52848f055ad2"
@@ -172,7 +177,7 @@ The Dogbreeds notebook on the level is very similar and takes you through more f
 
 ## Follow up steps
 
-When you are ready to user your own data, copy your data into your storage account. See [CopyData](CopyData.md).
+When you are ready to use your own data, copy your data into your data storage account. See [CopyData](CopyData.md).
 
 If forget the information the admin sent you about your workspace, see [Retrieve Workspace Info](RetrieveWorkspaceInfo.md).
 
