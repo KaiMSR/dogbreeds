@@ -86,12 +86,10 @@ After you have set up your compute environment, provide your users with followin
   - Your workspace name
   - The names of the AML Compute clusters your user can use
 
-### Admin set up code
+## Admin set up code
 
 In the admin folder scripts show how to set up the Dog Breeds application.
-The scripts are meant to be run in sections and for the admin to inspect each section.
 
-Sections are marked  `#########`.
 
 ### Set up workspace and related resources
 
@@ -115,9 +113,8 @@ Permissions are assigned at the resource level using Azure Active Directory iden
 | Key Vault | Inherited Owner | Owner | Contributor |
 | App Insights  | Inherited Owner | Owner | Contributor |
 
-NOTE: for the script the Data Scientist role has been named `ML User`
-
 The [Data Scientist](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-assign-roles) role is a currently a custom role. 
+NOTE: For the script the Data Scientist role has been named `ML User`
 
 To start the script, change directory to the folder and type the following command:
 
