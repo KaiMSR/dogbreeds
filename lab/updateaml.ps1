@@ -1,7 +1,6 @@
 # This script updates the Azure CLI, the Azure Machine Learning CLI, and the Azure Machine Learning Services Python SDK on Linux
 
 # update the CLI and the Azure Machine Learning CLI
-curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash 
 az extension remove -n azure-cli-ml
 az extension add -n azure-cli-ml
 

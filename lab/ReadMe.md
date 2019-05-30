@@ -6,6 +6,7 @@ This document provides steps to get started using Azure Machine Learning service
 2. Run the notebook that will run a sample on Azure Machine Learning services
 
 For:
+
 - Administrators (in the [Admin/ReadMe](admin/ReadMe.md))
 - Researchers (in this ReadMe)
 
@@ -19,8 +20,8 @@ Here are the prerequisites for users to get started.
 - Understand fundamentals of [Azure Machine Learning Services](https://docs.microsoft.com/en-us/azure/machine-learning/service/), including workspaces, experiments, compute
 - Have either:
 
-  - Set up on DSVM, see [Setup on DVSM](SetUpAzureMLOnDSVM.md) for details
-  - Set up on a development computer you provide, see [Setup on development system](SetUpOwnDevSystem.md)
+  - Set up on DSVM, see [Setup on DVSM](SetUpAzureMLOnDSVM.md).
+  - Set up on a development computer you provide, see [Setup on development system](SetUpOwnDevSystem.md).
 
 Your admin will have already:
 
@@ -39,7 +40,16 @@ Your admin will provide you with:
   - The name of the storage account set up for your data
   - The names of the AML Compute clusters you can use
 
-## Open a command prompt on your system
+Open a command prompt on your system and then:
+
+1. Retrieve this repo
+2. Update the CLI
+3. Update Azure ML CLI and Azure ML for Pythton SDK
+4. Set environment variables with your workspace and database settings
+5. Start Azure and run your experiment in workspace using Jupyter Notebook
+6. Run your experiment
+
+## 1. Retrieve this repo
 
 Run the following commands to retrieve this repo.
 
@@ -54,22 +64,29 @@ conda init --all
 
 Close the shell window and open a new command prompt.
 
-Next, update your system with the latest version of the CLI and the Azure Machine Learning services SDK:
+## 2. Update the CLI
 
-#### In Bash
+Next, update your system with the latest version of the CLI and the Azure Machine Learning services SDK.
+User the following script in Bash or in PowerShell.
+
+#### Update the Azure CLI in Bash on Linux or Bash on Windows
 
 ```bash
-cd ~/notebooks/dogbreeds/lab
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash 
+```
+
+#### Update the Azure CLI in PowerShell
+
+Update the [Azure CLI on Windows](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest)
+
+## 3. Update Azure ML CLI and Azure ML for Pythton SDK
+
+The following code works in both PowerShell and Bash.
+
+```
 az extension remove -n azure-cli-ml
 az extension add -n azure-cli-ml
-```
 
-Next set up the Azure Machine Learning services environment.
-
-#### In Bash or PowerShell
-
-```
 conda create -n azureml -y Python=3.6 ipywidgets nb_conda
 
 conda activate azureml
@@ -82,7 +99,7 @@ NOTE: The script creates an Azure Machine Learning services environment in conda
 environment, be sure to start from the azureml environment. This helps prevent overwriting a dependency in 
 your own development environment.
 
-## Set environment variables
+## 4. Set environment variables with your workspace and database settings
 
 Get the following information from your admin and copy and paste into the shell.
 
@@ -120,18 +137,9 @@ $env:DATA_STORAGE_CONTAINER="dogbreeds"
 
 NOTE - The preceding text is an example. You need to get the actual data from your admin.
 
+## 5. Start Azure and run your experiment in workspace using Jupyter Notebook
 
-## Get started in your workspace
-
-Next: 
-
-1. Set the environment
-2. Log in to Azure
-3. Get the storage account key from your data source
-4. Change directory to where the lab is shown
-5. Start Jupyter Notebook
-
-Copy and paste the script into the shell.
+Copy and paste the script into the shell. 
 
 #### In Bash
 
@@ -161,13 +169,13 @@ cd ~/notebooks/dogbreeds/lab
 jupyter notebook
 ```
 
-## Run your run
+## 6. Run your experiment
 
 Start [dog-breed-lab-orientation.ipynb](dog-breed-lab-orientation.ipynb) to run your run on AML Compute cluster.
 
 ## Next steps
 
-The Dogbreeds notebook on the level is very similar and takes you through more features of Azure Machine Learning service, such as:
+The Dogbreeds notebooks (in `~/notebooks/dogbreeds`) is similar and demonstrates more features of Azure Machine Learning service, such as:
 
 - Distributed processing
 - Hyperparameter sweepts
